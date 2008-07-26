@@ -10,7 +10,7 @@
 ##
 ######################################################################
 SUBDIRS = ../Src
-RESOURCES=res/program.data.bin res/Basic_ROM res/Kernal_ROM res/Char_ROM res/1541_ROM res/brucelee.d64
+RESOURCES=res/program.data.bin res/Basic_ROM res/Kernal_ROM res/Char_ROM res/1541_ROM
 TARGET   =frodo.jar frodo.jad
 CIBYL_SYSCALL_SETS ?= resource_manager
 
@@ -27,9 +27,6 @@ $(SUBDIRS):
 
 tmpclasses/CibylConfig.java: CibylConfig.java
 	cp $< $@
-
-res/brucelee.d64:
-	cp /tmp/brucelee.d64 $@
 
 res/Basic_ROM:
 	cp "../Basic ROM" $@
