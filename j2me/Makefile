@@ -1,12 +1,12 @@
 ######################################################################
 ##
-## Copyright (C) 2005,  Blekinge Institute of Technology
+## Copyright (C) 2007-2008,  Simon Kagstrom
 ##
 ## Filename:      Makefile
-## Author:        Simon Kagstrom <ska@bth.se>
+## Author:        Simon Kagstrom <simon.kagstrom@gmail.com>
 ## Description:   Generic Makefile
 ##
-## $Id: Makefile 9386 2006-08-16 06:28:16Z ska $
+## $Id: Makefile $
 ##
 ######################################################################
 SUBDIRS = ../Src
