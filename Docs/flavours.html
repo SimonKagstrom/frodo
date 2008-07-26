@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE>Frodo, Frodo PC and Frodo SC</TITLE>
+</HEAD>
+<BODY>
+
+<H1>Frodo, Frodo PC and Frodo SC</H1>
+
+<HR>
+
+Frodo comes in three 'flavours' that allow you to decide between speed
+and accuracy of the emulation.
+
+<H2>The line-based emulation 'Frodo'</H2>
+
+<B>Frodo</B> is a line-based emulation, i.e. the activities that happen
+in parallel during one video line in the real C64 are emulated one after
+the other for the different chips. This offers a reasonable degree of
+precision of the emulation at a decent speed. There are some things that
+cannot be emulated with this technique, but it works fine with about
+80% of all C64 programs and it is also the fastest of the three Frodo
+versions.
+
+<HR>
+
+<H2>The improved line-based emulation 'Frodo PC'</H2>
+
+<B>Frodo PC</B> is also a line-based emulation but it has some improvements
+over the standard Frodo:
+
+<UL>
+<LI>Code in chip registers can be executed
+<LI>Correct calculation of 6510 instruction cycles
+<LI>More precise CIA emulation
+</UL>
+
+Programs that don't work on the standard Frodo or that produce an
+"Illegal jump to I/O space" message might work with Frodo PC. However,
+Frodo PC is a bit slower.
+
+<HR>
+
+<H2>The single-cycle emulation 'Frodo SC'</H2>
+
+<B>Frodo SC</B> is a special version of Frodo that doesn't work with a
+line-based emulation but instead with a cycle-based one. That means that
+the emulator switches between 6510 and VIC in every emulated ø2 clock
+phase. By doing this, Frodo SC achieves an extreme precision (nearly all
+$d011 and $d016 effects can be emulated), but at the expense of speed.
+
+In the settings options, Frodo SC differs from Frodo/Frodo PC in only
+a few points:
+
+<UL>
+<LI>The "Cycles per line" settings are not available as the timing of Frodo SC is hardcoded
+<LI>The "Clear CIA IRC on write" hack is not necessary
+</UL>
+
+Apart from that, Frodo SC is operated in the same way as Frodo and also
+uses the same settings. Frodo SC has only a few incompatibilities to a
+real C64:
+
+<UL>
+<LI>On the left and right side of the screen, sprites are not clipped but blanked out
+<LI>Sprite collisions are only detected within the visible screen area (excluding borders)
+<LI>The sprite data fetch ignores the state of BA
+<LI>On BA low and AEC high, the VIC always reads $f in D8-D11
+<LI>Color register modifications are visible 7 pixels too late
+<LI>The TOD clock should not be stopped on a read access, but be latched
+<LI>The SDR interrupt is faked
+<LI>Some small incompatibilities with the CIA timers
+<LI>The readable SID registers are not emulated correctly
+</UL>
+
+</BODY>
+</HTML>

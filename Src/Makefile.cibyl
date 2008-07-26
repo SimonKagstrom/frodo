@@ -1,0 +1,31 @@
+# Makefile.in for Frodo (generic Unix/X11)
+# Copyright (C) 1995-1997 Christian Bauer <cbauer@iphcip1.physik.uni-mainz.de>
+
+## Version information
+VERSION   = 4
+REVISION  = 1
+
+DEFINES = -DVERSION='"$(VERSION)"' -U__unix -DSMALL_DISPLAY=1
+CFLAGS  = -Wno-unused -fno-threadsafe-statics
+INCLUDES=-I../j2me/include
+TARGET = ../j2me/c/program
+OBJS = 1541d64.oo CPU1541.oo Prefs.oo CPU_common.oo  REU.oo \
+       1541job.oo  CIA.oo  Display.oo IEC.oo SID.oo \
+       C64.oo main.oo VIC.oo CPUC64.oo cibyl-menus.o
+
+LDLIBS = -lmidp -ljsr075 -lcibar -ls9 -lsoftfloat -lstdc++ -lm
+
+all: sysconfig.h $(TARGET)
+
+include $(CIBYL_BASE)/build/Rules.mk
+
+sysconfig.h: sysconfig.h.cibyl FORCE
+	cp $< $@
+
+Display.oo: Display.cpp Display.h Display_cibyl.i
+
+C64.oo: C64.cpp C64_cibyl.i
+
+main.oo: main.cpp main_cibyl.i
+
+FORCE:

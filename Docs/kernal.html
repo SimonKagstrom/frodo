@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<TITLE>Kernal extensions</TITLE>
+</HEAD>
+<BODY>
+
+<H1>Extensions of the included Kernal ROM</H1>
+
+<HR>
+
+The included "Kernal ROM" has some improvements/changes as compared to
+an original C64 kernal:
+
+<UL>
+<LI>RAM at $fd30-$fd4f is not overwritten during reset
+<LI>Default device address is 8
+<LI>Default secondary address is 1
+<LI>Start and end address are displayed when loading
+<LI>C= key stops scrolling
+<LI>Faster key repeat
+<LI>Tape and RS232 routines removed
+<LI>Key commands:
+<UL>
+<LI>F1       : <KBD>&lt;CLS&gt; LIST &lt;CR&gt;</KBD>
+<LI>F2       : <KBD>SYS32768 &lt;CR&gt;</KBD>
+<LI>F3       : <KBD>RUN &lt;CR&gt;</KBD>
+<LI>F4       : <KBD>SYS4096*12</KBD>
+<LI>F5       : <KBD>LOAD"</KBD>
+<LI>F6       : <KBD>SAVE"</KBD>
+<LI>F7       : <KBD>LOAD"$",8 &lt;CR&gt;</KBD>
+<LI>F8       : <KBD>CLOSE7:OPEN7,8,15,"</KBD>
+<LI>SHIFT-Run: <KBD>LOAD":*",8,1:RUN &lt;CR&gt;</KBD>
+<LI>CTRL-D   : Display directory of drive 8
+<LI>CTRL-K   : Read error channel of drive 8
+<LI>CTRL-L   : Load Basic program from RAM disk
+<LI>CTRL-O   : UNNEW
+<LI>CTRL-U   : Modifies the SAVE routine so that the RAM at $a000-$bfff can be <KBD>SAVE</KBD>d
+<LI>CTRL-V   : Swap Basic program with RAM disk
+<LI>CTRL-W   : Save Basic program to RAM disk
+<LI>CTRL-X   : Continue LIST command
+<LI>CTRL-Z   : Continue LIST command 50 lines earlier
+<LI>CTRL-F1  : Swap screen with buffer 1
+<LI>CTRL-F3  : Swap screen with buffer 2
+<LI>CTRL-F5  : Swap screen with buffer 3
+<LI>CTRL-F7  : Swap screen with buffer 4
+<LI>CBM-F1   : Write screen to buffer 3
+<LI>CBM-F3   : Write screen to buffer 4
+<LI>CBM-F5   : Get screen from buffer 3
+<LI>CBM-F7   : Get screen from buffer 4
+</UL>
+<LI>Startup message shows "BASIC X2"
+</UL>
+
+</BODY>
+</HTML>

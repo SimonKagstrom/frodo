@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>Installation</TITLE>
+</HEAD>
+<BODY>
+
+<H1>Installation</H1>
+
+<HR>
+
+There are two kinds of Frodo distributions. The source distributions ("FrodoV?_?.Src.*")
+contain source code that has to be compiled on your system. The binary distributions
+("FrodoV?_?.<system name>.*") contain an executable that can be started directly.
+
+<H2>Compiling under BeOS</H2>
+
+There are BeIDE project files for Frodo ("Frodo.proj"), Frodo PC ("FrodoPC.proj")
+and Frodo SC ("FrodoSC.proj"). You must rename (or copy) Src/sysconfig.h.Be
+to Src/sysconfig.h first. Compilation requires the unlimited Metrowerks
+linker.
+
+<H2>Compiling under Unix</H2>
+
+First you have to run the program "configure". This can be done simply with
+the following command:<P>
+
+<KBD>cd Src<BR>
+./configure</KBD><P>
+
+You might want to give configure optional arguments. To use SVGAlib on Linux
+systems, you have to do<P>
+
+<KBD>cd Src<BR>
+./configure --without-x</KBD><P>
+
+To select a german keyboard layout in the X11 version instead of the usual
+US keyboard, do<P>
+
+<KBD>cd Src<BR>
+./configure --enable-kbd-lang-de</KBD><P>
+
+After running configure, you may want to edit the generated Makefile. To use the SHM
+extension (highly recommended for speed), add "-DX_USE_SHM" to the definition of
+CFLAGS.  To get sound under Solaris 2.x, add "-DSUN". Next, type<P>
+
+<KBD>make all</KBD><P>
+
+<H2>Compiling under AmigaOS</H2>
+
+The makefile was written for the ADE with GCC. Other compilers have not been tested.
+You must rename (or copy) Src/sysconfig.h.Amiga to Src/sysconfig.h first. Then type<P>
+
+<KBD>cd Src<BR>
+make -fMakefile.Amiga all</KBD><P>
+
+<H2>The C64 ROM files (all systems)</H2>
+
+Frodo looks for four ROM files named "Basic ROM", "Kernal ROM", "Char ROM"
+and "1541 ROM" in the same directory Frodo is in. These files are included
+in the source and binary distributions of Frodo. "Kernal ROM" is an
+<A HREF="kernal.html">extended</A> version of the C64 Kernal.
+
+</BODY>
+</HTML>
