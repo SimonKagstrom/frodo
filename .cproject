@@ -3,11 +3,10 @@
 
 <cproject>
 <storageModule moduleId="org.eclipse.cdt.core.settings">
-<cconfiguration id="0.2096524893">
-<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.2096524893" moduleId="org.eclipse.cdt.core.settings" name="Default">
+<cconfiguration id="0.1476523822">
+<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.1476523822" moduleId="org.eclipse.cdt.core.settings" name="Default">
 <externalSettings/>
 <extensions>
-<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 <extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 <extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
@@ -16,61 +15,25 @@
 </extensions>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-<configuration artifactName="frodo-cibyl" buildProperties="" description="" id="0.2096524893" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
-<folderInfo id="0.2096524893." name="/" resourcePath="">
-<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1376534949" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
-<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.eclipse.cdt.build.core.prefbase.toolchain.1376534949.920482221" name=""/>
-<builder id="org.eclipse.cdt.build.core.settings.default.builder.1934573681" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
-<tool id="org.eclipse.cdt.build.core.settings.holder.libs.690371826" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
-<tool id="org.eclipse.cdt.build.core.settings.holder.1658250129" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
-<option id="org.eclipse.cdt.build.core.settings.holder.undef.incpaths.349852" name="Undefined Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.undef.incpaths" valueType="undefIncludePath">
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2"/>
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2/x86_64-linux-gnu"/>
-<listOptionValue builtIn="false" value="/usr/lib/gcc/x86_64-linux-gnu/4.2.3/include"/>
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2/backward"/>
-<listOptionValue builtIn="false" value="/usr/include"/>
-<listOptionValue builtIn="false" value="/usr/local/include"/>
-</option>
-<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.249434708" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cibyl}&quot;"/>
-</option>
-<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.2130603074" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+<configuration artifactName="frodo-cibyl" buildProperties="" description="" id="0.1476523822" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+<folderInfo id="0.1476523822." name="/" resourcePath="">
+<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1050090941" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
+<targetPlatform id="org.eclipse.cdt.build.core.prefbase.toolchain.1050090941.1657491742" name=""/>
+<builder id="org.eclipse.cdt.build.core.settings.default.builder.210847460" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
+<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1705856775" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
+<tool id="org.eclipse.cdt.build.core.settings.holder.261447753" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.169654775" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 </tool>
-<tool id="org.eclipse.cdt.build.core.settings.holder.309906089" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
-<option id="org.eclipse.cdt.build.core.settings.holder.undef.incpaths.1055071450" name="Undefined Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.undef.incpaths" valueType="undefIncludePath">
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2"/>
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2/x86_64-linux-gnu"/>
-<listOptionValue builtIn="false" value="/usr/lib/gcc/x86_64-linux-gnu/4.2.3/include"/>
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2/backward"/>
-<listOptionValue builtIn="false" value="/usr/include"/>
-<listOptionValue builtIn="false" value="/usr/local/include"/>
-</option>
-<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.2073096635" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cibyl}&quot;"/>
-</option>
-<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1407882924" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+<tool id="org.eclipse.cdt.build.core.settings.holder.1540950834" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
+<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1523704318" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 </tool>
-<tool id="org.eclipse.cdt.build.core.settings.holder.378495225" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
-<option id="org.eclipse.cdt.build.core.settings.holder.undef.incpaths.731224317" name="Undefined Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.undef.incpaths" valueType="undefIncludePath">
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2"/>
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2/x86_64-linux-gnu"/>
-<listOptionValue builtIn="false" value="/usr/lib/gcc/x86_64-linux-gnu/4.2.3/include"/>
-<listOptionValue builtIn="false" value="/usr/include/c++/4.2/backward"/>
-<listOptionValue builtIn="false" value="/usr/include"/>
-<listOptionValue builtIn="false" value="/usr/local/include"/>
-</option>
-<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1602818433" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-<listOptionValue builtIn="false" value="&quot;${workspace_loc:/cibyl}&quot;"/>
-</option>
-<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.837961700" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+<tool id="org.eclipse.cdt.build.core.settings.holder.181907389" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
+<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1563385910" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 </tool>
 </toolChain>
 </folderInfo>
 </configuration>
 </storageModule>
-<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
-<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
-<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 <storageModule moduleId="scannerConfiguration">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
@@ -153,7 +116,7 @@
 <parser enabled="true"/>
 </scannerInfoProvider>
 </profile>
-<scannerConfigBuildInfo instanceId="0.2096524893">
+<scannerConfigBuildInfo instanceId="0.1476523822">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 <buildOutputProvider>
@@ -161,7 +124,7 @@
 <parser enabled="true"/>
 </buildOutputProvider>
 <scannerInfoProvider id="specsFile">
-<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc -DCIBYL=1" useDefault="true"/>
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
 <parser enabled="true"/>
 </scannerInfoProvider>
 </profile>
@@ -237,9 +200,10 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">
-<project id="frodo-cibyl.null.810996781" name="frodo-cibyl"/>
+<project id="frodo-cibyl.null.1710376714" name="frodo-cibyl"/>
 </storageModule>
 </cproject>
