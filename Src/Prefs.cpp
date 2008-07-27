@@ -25,7 +25,7 @@ Prefs ThePrefsOnDisk;
 
 Prefs::Prefs()
 {
-	NormalCycles = 43;
+	NormalCycles = 63;
 	BadLineCycles = 15;
 	CIACycles = 63;
 	FloppyCycles = 64;
@@ -64,7 +64,7 @@ Prefs::Prefs()
 	SIDFilters = true;
 	DoubleScan = true;
 	HideCursor = false;
-	DirectSound = true;	
+	DirectSound = true;
 	ExclusiveSound = false;
 	AutoPause = false;
 	PrefsAtStartup = false;
