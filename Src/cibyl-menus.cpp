@@ -9,10 +9,13 @@
  * $Id:$
  *
  ********************************************************************/
+#include "Prefs.h"
+
 #include <javax/microedition/lcdui.h>
 #include <javax/microedition/io.h>
 #include <java/util.h>
 #include "command_mgr.h"
+
 
 static NOPH_List_t fs_list;
 static char roots[5][40];
@@ -181,33 +184,79 @@ char *cibyl_select_game(char *base_dir)
 }
 
 
+typedef struct
+{
+	int selected;
+	NOPH_List_t main_menu_list;
+} mm_args_t;
+
+typedef struct key_seq_item
+{
+  int kc;
+  bool shift;
+} key_seq_item_t;
+#define MATRIX(a,b) (((a) << 3) | (b))
+
+extern int autostart;
+extern int autostart_type;
+extern key_seq_item_t game_b_key;
+
 static void main_menu_callback(void *p)
 {
-	int *selected = p;
-        int nr = NOPH_List_getSelectedIndex(main_menu_list);
+	mm_args_t *a = (mm_args_t*)p;
+        int nr = NOPH_List_getSelectedIndex(a->main_menu_list);
 
-        *selected = 1;
+        switch(nr)
+        {
+        case 0:
+        	ThePrefs.JoystickSwap = !ThePrefs.JoystickSwap;
+        	break;
+        case 1:
+        	game_b_key = (key_seq_item_t){ MATRIX(7, 4), false };
+        	break;
+        case 2:
+        	game_b_key = (key_seq_item_t){ MATRIX(7, 7), false };
+        	break;
+        case 3:
+        	autostart = 1;
+        	autostart_type = 0;
+        	break;
+        case 4:
+        	autostart = 1;
+        	autostart_type = 2;
+        	break;
+        default:
+        	break;
+        }
+
+        a->selected = 1;
 }
 
-void cibyl_main_menu(char *base_dir)
+void cibyl_main_menu(void)
 {
 	NOPH_List_t main_menu_list;
         NOPH_Display_t display = NOPH_Display_getDisplay(NOPH_MIDlet_get());
         NOPH_Displayable_t cur = NOPH_Display_getCurrent(display);
         NOPH_CommandMgr_t cm = NOPH_CommandMgr_getInstance();
-	int selected = 0;
+        mm_args_t args;
+        char buf[80];
 
         main_menu_list = NOPH_List_new("Choose option", NOPH_Choice_IMPLICIT);
 
-        snprintf(buf, "Swap joysticks (now port %d)", ThePrefs.JoystickSwap ? 1 : 2)
+        snprintf(buf, 80, "Swap joysticks (now port %d)", ThePrefs.JoystickSwap ? 1 : 2);
         NOPH_List_append(main_menu_list, buf, 0);
+        NOPH_List_append(main_menu_list, "Bind space to GAME_B", 0);
+        NOPH_List_append(main_menu_list, "Bind RunStop to GAME_B", 0);
         NOPH_List_append(main_menu_list, "Load from disk", 0);
         NOPH_List_append(main_menu_list, "Load from tape", 0);
         NOPH_Display_setCurrent(display, main_menu_list);
 
-        NOPH_CommandMgr_setList(cm, main_menu_list, main_menu_callback, NULL);
+        /* Setup the callback args */
+        args.selected = 0;
+        args.main_menu_list = main_menu_list;
+        NOPH_CommandMgr_setList(cm, main_menu_list, main_menu_callback, &args);
 
-        while(selected == 0)
+        while(args.selected == 0)
         {
                 NOPH_Thread_sleep(250);
         }

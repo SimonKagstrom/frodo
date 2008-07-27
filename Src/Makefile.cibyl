@@ -11,7 +11,7 @@ INCLUDES=-I../j2me/include
 TARGET = ../j2me/c/program
 OBJS = 1541d64.oo CPU1541.oo Prefs.oo CPU_common.oo  REU.oo \
        1541job.oo  CIA.oo  Display.oo IEC.oo SID.oo \
-       C64.oo main.oo VIC.oo CPUC64.oo cibyl-menus.o
+       C64.oo main.oo VIC.oo CPUC64.oo cibyl-menus.oo
 
 LDLIBS = -lmidp -ljsr075 -lcibar -ls9 -lsoftfloat -lstdc++ -lm
 

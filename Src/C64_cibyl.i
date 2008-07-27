@@ -38,7 +38,7 @@ static key_seq_item_t d_auto_seq[4][18] =
     { MATRIX(7, 0), false }, /*1*/
     { MATRIX(0, 1), false }, /*RET*/
     { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/    
+    { MATRIX(3, 6), false }, /*U*/
     { MATRIX(4, 7), false }, /*N*/
     { MATRIX(0, 1), false }, /*RET*/
   },
@@ -58,7 +58,7 @@ static key_seq_item_t d_auto_seq[4][18] =
     { MATRIX(7, 0), false }, /*1*/
     { MATRIX(0, 1), false }, /*RET*/
     { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/    
+    { MATRIX(3, 6), false }, /*U*/
     { MATRIX(4, 7), false }, /*N*/
     { MATRIX(0, 1), false }, /*RET*/
   },
@@ -78,7 +78,7 @@ static key_seq_item_t d_auto_seq[4][18] =
     { MATRIX(7, 0), false }, /*1*/
     { MATRIX(0, 1), false }, /*RET*/
     { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/    
+    { MATRIX(3, 6), false }, /*U*/
     { MATRIX(4, 7), false }, /*N*/
     { MATRIX(0, 1), false }, /*RET*/
   },
@@ -98,7 +98,7 @@ static key_seq_item_t d_auto_seq[4][18] =
     { MATRIX(7, 0), false }, /*1*/
     { MATRIX(0, 1), false }, /*RET*/
     { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/    
+    { MATRIX(3, 6), false }, /*U*/
     { MATRIX(4, 7), false }, /*N*/
     { MATRIX(0, 1), false }, /*RET*/
   },
@@ -156,6 +156,7 @@ void C64::Run(void)
  */
 
 int autostart = 0;
+int autostart_type = 0;
 int autostart_index = 0;
 int autostart_keytime = 5;
 void C64::VBlank(bool draw_frame)
@@ -166,7 +167,7 @@ void C64::VBlank(bool draw_frame)
 
         if (autostart == 1)
         {
-                key_seq_item_t cur = d_auto_seq[0][autostart_index];
+                key_seq_item_t cur = d_auto_seq[autostart_type][autostart_index];
 
                 TheDisplay->FakeKeyPress(cur.kc, cur.shift, TheCIA1->KeyMatrix, TheCIA1->RevMatrix, &joy_state);
 

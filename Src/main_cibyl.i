@@ -15,11 +15,9 @@ extern int init_graphics(void);
 // Global variables
 char Frodo::prefs_path[256] = "";
 
-extern "C" {
 extern char *cibyl_select_fs_root(void);
 extern void cibyl_set_fs_root(char *fsr);
 char *cibyl_select_game(char *base_dir);
-};
 
 static char *selected_game;
 

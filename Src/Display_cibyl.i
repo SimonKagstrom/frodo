@@ -43,8 +43,6 @@ static C64Display *c64_disp;
   7    R/S  Q   C= SPC  2  CTL  <-  1
 */
 
-#define MATRIX(a,b) (((a) << 3) | (b))
-
 extern char char_to_key[];
 
 /*
@@ -250,10 +248,19 @@ void C64Display::FakeKeyPress(int kc, bool shift, uint8 *CIA_key_matrix, uint8 *
         }
 }
 
+typedef struct key_seq_item
+{
+  int kc;
+  bool shift;
+} key_seq_item_t;
+#define MATRIX(a,b) (((a) << 3) | (b))
+
 /*
  *  Poll the keyboard
  */
 extern int autostart;
+key_seq_item_t game_b_key = {MATRIX(7, 4), false}; /* Space */
+extern void cibyl_main_menu(void);
 void C64Display::PollKeyboard(uint8 *key_matrix, uint8 *rev_matrix, uint8 *joystick)
 {
         int keyState = NOPH_GameCanvas_getKeyStates(canvas);
@@ -261,14 +268,21 @@ void C64Display::PollKeyboard(uint8 *key_matrix, uint8 *rev_matrix, uint8 *joyst
 
         if (keyState & NOPH_GameCanvas_GAME_A_PRESSED)
         {
-                autostart = 1;
+        	/* FIXME: Bring up the menu instead */
+                printf("Main menu bring up\n");
+        	cibyl_main_menu();
+                printf("Done\n");
         }
-
         if (keyState & NOPH_GameCanvas_GAME_B_PRESSED)
         {
-                /* FIXME: Bring up the menu instead */
-                ThePrefs.JoystickSwap = !ThePrefs.JoystickSwap;
-                printf("Swapping joysticks\n");
+        	printf("Game b down\n");
+        	this->FakeKeyPress(game_b_key.kc, game_b_key.shift, key_matrix,
+        			rev_matrix, NULL);
+        }
+        else
+        {
+        	this->FakeKeyPress(-1, game_b_key.shift, rev_matrix,
+        			key_matrix, NULL);
         }
 
         /* Key handling for joystick. For reference: This was the site of
