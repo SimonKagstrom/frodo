@@ -175,6 +175,44 @@ char *cibyl_select_game(char *base_dir)
 
         NOPH_Display_setCurrent(display, cur);
         NOPH_delete(game_list);
+        game_list = 0;
 
         return get_game_directory(selected_game);
+}
+
+
+static void main_menu_callback(void *p)
+{
+	int *selected = p;
+        int nr = NOPH_List_getSelectedIndex(main_menu_list);
+
+        *selected = 1;
+}
+
+void cibyl_main_menu(char *base_dir)
+{
+	NOPH_List_t main_menu_list;
+        NOPH_Display_t display = NOPH_Display_getDisplay(NOPH_MIDlet_get());
+        NOPH_Displayable_t cur = NOPH_Display_getCurrent(display);
+        NOPH_CommandMgr_t cm = NOPH_CommandMgr_getInstance();
+	int selected = 0;
+
+        main_menu_list = NOPH_List_new("Choose option", NOPH_Choice_IMPLICIT);
+
+        snprintf(buf, "Swap joysticks (now port %d)", ThePrefs.JoystickSwap ? 1 : 2)
+        NOPH_List_append(main_menu_list, buf, 0);
+        NOPH_List_append(main_menu_list, "Load from disk", 0);
+        NOPH_List_append(main_menu_list, "Load from tape", 0);
+        NOPH_Display_setCurrent(display, main_menu_list);
+
+        NOPH_CommandMgr_setList(cm, main_menu_list, main_menu_callback, NULL);
+
+        while(selected == 0)
+        {
+                NOPH_Thread_sleep(250);
+        }
+
+        NOPH_Display_setCurrent(display, cur);
+        NOPH_delete(main_menu_list);
+        main_menu_list = 0;
 }
