@@ -22,18 +22,40 @@
 <builder id="org.eclipse.cdt.build.core.settings.default.builder.210847460" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
 <tool id="org.eclipse.cdt.build.core.settings.holder.libs.1705856775" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 <tool id="org.eclipse.cdt.build.core.settings.holder.261447753" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1268691148" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/ansi/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/java/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/javax.microedition/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/frodo-cibyl/trunk/j2me/syscalls/command_mgr/include"/>
+</option>
 <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.169654775" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 </tool>
 <tool id="org.eclipse.cdt.build.core.settings.holder.1540950834" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
+<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.451666558" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/ansi/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/java/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/javax.microedition/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/frodo-cibyl/trunk/j2me/syscalls/command_mgr/include"/>
+</option>
 <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1523704318" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 </tool>
 <tool id="org.eclipse.cdt.build.core.settings.holder.181907389" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
+<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1980289948" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/ansi/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/java/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/trunk/syscalls/javax.microedition/include"/>
+<listOptionValue builtIn="false" value="/home/ska/projects/cibyl/frodo-cibyl/trunk/j2me/syscalls/command_mgr/include"/>
+</option>
 <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1563385910" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 </tool>
 </toolChain>
 </folderInfo>
 </configuration>
 </storageModule>
+
+<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 <storageModule moduleId="scannerConfiguration">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
@@ -200,7 +222,6 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
-<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">
