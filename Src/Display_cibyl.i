@@ -43,8 +43,6 @@ static C64Display *c64_disp;
   7    R/S  Q   C= SPC  2  CTL  <-  1
 */
 
-extern char char_to_key[];
-
 /*
  *  Open window
  */

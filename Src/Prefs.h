@@ -7,6 +7,8 @@
 #ifndef _PREFS_H
 #define _PREFS_H
 
+extern "C" int get_kc_from_char(char c_in, int *shifted);
+
 
 // Drive types
 enum {

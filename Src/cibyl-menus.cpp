@@ -187,7 +187,7 @@ char *cibyl_select_game(char *base_dir)
 typedef struct
 {
 	int selected;
-	NOPH_List_t main_menu_list;
+	NOPH_List_t menu_list;
 } mm_args_t;
 
 typedef struct key_seq_item
@@ -204,7 +204,7 @@ extern key_seq_item_t game_b_key;
 static void main_menu_callback(void *p)
 {
 	mm_args_t *a = (mm_args_t*)p;
-        int nr = NOPH_List_getSelectedIndex(a->main_menu_list);
+        int nr = NOPH_List_getSelectedIndex(a->menu_list);
 
         switch(nr)
         {
@@ -212,16 +212,25 @@ static void main_menu_callback(void *p)
         	ThePrefs.JoystickSwap = !ThePrefs.JoystickSwap;
         	break;
         case 1:
+		/* Space */
         	game_b_key = (key_seq_item_t){ MATRIX(7, 4), false };
         	break;
         case 2:
+		/* Run/stop */
         	game_b_key = (key_seq_item_t){ MATRIX(7, 7), false };
         	break;
         case 3:
+		/* Return */
+        	game_b_key = (key_seq_item_t){ MATRIX(0, 1), false };
+        	break;
+	case 4:
+		a->selected = 2;
+		return;
+        case 5:
         	autostart = 1;
         	autostart_type = 0;
         	break;
-        case 4:
+        case 6:
         	autostart = 1;
         	autostart_type = 2;
         	break;
@@ -247,13 +256,15 @@ void cibyl_main_menu(void)
         NOPH_List_append(main_menu_list, buf, 0);
         NOPH_List_append(main_menu_list, "Bind space to GAME_B", 0);
         NOPH_List_append(main_menu_list, "Bind RunStop to GAME_B", 0);
+        NOPH_List_append(main_menu_list, "Bind Return to GAME_B", 0);
+        NOPH_List_append(main_menu_list, "Bind other to GAME_B", 0);
         NOPH_List_append(main_menu_list, "Load from disk", 0);
         NOPH_List_append(main_menu_list, "Load from tape", 0);
         NOPH_Display_setCurrent(display, main_menu_list);
 
         /* Setup the callback args */
         args.selected = 0;
-        args.main_menu_list = main_menu_list;
+        args.menu_list = main_menu_list;
         NOPH_CommandMgr_setList(cm, main_menu_list, main_menu_callback, &args);
 
         while(args.selected == 0)
@@ -261,7 +272,9 @@ void cibyl_main_menu(void)
                 NOPH_Thread_sleep(250);
         }
 
+//	if (args.selected == 2)
+//		input_menu();
+
         NOPH_Display_setCurrent(display, cur);
         NOPH_delete(main_menu_list);
-        main_menu_list = 0;
 }

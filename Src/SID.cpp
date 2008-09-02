@@ -486,6 +486,7 @@ private:
 // Static data members
 uint16 DigitalRenderer::TriTable[0x1000*2];
 
+#if !defined(__CIBYL)
 #ifndef EMUL_MOS8580
 // Sampled from a 6581R4
 const uint16 DigitalRenderer::TriSawTable[0x100] = {
@@ -769,7 +770,7 @@ const uint16 DigitalRenderer::TriSawRectTable[0x100] = {
 	0xC0C0, 0xC0C0, 0xE0E0, 0xE0E0, 0xE0E0, 0xF0F0, 0xF8F8, 0xFCFC
 };
 #endif
-
+#endif
 const uint32 DigitalRenderer::EGTable[16] = {
 	(SID_CYCLES << 16) / 9, (SID_CYCLES << 16) / 32,
 	(SID_CYCLES << 16) / 63, (SID_CYCLES << 16) / 95,
@@ -899,6 +900,7 @@ void DigitalRenderer::Reset(void)
 
 void DigitalRenderer::WriteRegister(uint16 adr, uint8 byte)
 {
+#if !defined(__CIBYL)
 	if (!ready)
 		return;
 
@@ -1004,6 +1006,7 @@ void DigitalRenderer::WriteRegister(uint16 adr, uint8 byte)
 			}
 			break;
 	}
+#endif /* CIBYL */
 }
 
 
@@ -1023,6 +1026,7 @@ void DigitalRenderer::NewPrefs(Prefs *prefs)
 
 void DigitalRenderer::calc_filter(void)
 {
+#if !defined(__CIBYL)
 #ifdef USE_FIXPOINT_MATHS
 	FixPoint fr, arg;
 
@@ -1154,6 +1158,7 @@ void DigitalRenderer::calc_filter(void)
 			break;
 	}
 #endif
+#endif
 }
 
 
@@ -1167,6 +1172,7 @@ void DigitalRenderer::calc_buffer(uint8 *buf, long count)
 void DigitalRenderer::calc_buffer(int16 *buf, long count)
 #endif
 {
+#if !defined(__CIBYL)
 	// Get filter coefficients, so the emulator won't change
 	// them in the middle of our calculations
 #ifdef USE_FIXPOINT_MATHS
@@ -1341,6 +1347,7 @@ void DigitalRenderer::calc_buffer(int16 *buf, long count)
 		*buf++ = (sum_output + sum_output_filter) >> 10;
 #endif
 	}
+#endif
 }
 
 

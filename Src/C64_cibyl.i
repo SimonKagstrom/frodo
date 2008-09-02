@@ -20,90 +20,15 @@ typedef struct key_seq_item
 } key_seq_item_t;
 
 #define MATRIX(a,b) (((a) << 3) | (b))
-static key_seq_item_t d_auto_seq[4][18] =
-{
-  {
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(5, 2), false }, /*L*/
-    { MATRIX(4, 6), false }, /*O*/
-    { MATRIX(1, 2), false }, /*A*/
-    { MATRIX(2, 2), false }, /*D*/
-    { MATRIX(7, 4), false }, /* */
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(6, 1), false }, /***/
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(3, 3), false }, /*8*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/
-    { MATRIX(4, 7), false }, /*N*/
-    { MATRIX(0, 1), false }, /*RET*/
-  },
-  {
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(5, 2), false }, /*L*/
-    { MATRIX(4, 6), false }, /*O*/
-    { MATRIX(1, 2), false }, /*A*/
-    { MATRIX(2, 2), false }, /*D*/
-    { MATRIX(7, 4), false }, /* */
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(6, 1), false }, /***/
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(4, 0), false }, /*9*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/
-    { MATRIX(4, 7), false }, /*N*/
-    { MATRIX(0, 1), false }, /*RET*/
-  },
-  {
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(5, 2), false }, /*L*/
-    { MATRIX(4, 6), false }, /*O*/
-    { MATRIX(1, 2), false }, /*A*/
-    { MATRIX(2, 2), false }, /*D*/
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(6, 1), false }, /***/
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(4, 3), false }, /*0*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/
-    { MATRIX(4, 7), false }, /*N*/
-    { MATRIX(0, 1), false }, /*RET*/
-  },
-  {
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(5, 2), false }, /*L*/
-    { MATRIX(4, 6), false }, /*O*/
-    { MATRIX(1, 2), false }, /*A*/
-    { MATRIX(2, 2), false }, /*D*/
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(6, 1), false }, /***/
-    { MATRIX(7, 3), true  }, /*"*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(5, 7), false }, /*,*/
-    { MATRIX(7, 0), false }, /*1*/
-    { MATRIX(0, 1), false }, /*RET*/
-    { MATRIX(2, 1), false }, /*R*/
-    { MATRIX(3, 6), false }, /*U*/
-    { MATRIX(4, 7), false }, /*N*/
-    { MATRIX(0, 1), false }, /*RET*/
-  },
-};
 
+/* */
+static const char *auto_seq[4] =
+{
+	"\nLOAD \"*\",8,1\nRUN\n",
+	"\nLOAD \"*\",9,1\nRUN\n",
+	"\nLOAD \"*\",10,1\nRUN\n",
+	"\nLOAD \"*\",11,1\nRUN\n",
+};
 
 /*
  *  Constructor, system-dependent things
@@ -167,9 +92,10 @@ void C64::VBlank(bool draw_frame)
 
         if (autostart == 1)
         {
-                key_seq_item_t cur = d_auto_seq[autostart_type][autostart_index];
+		int shifted;
+		int kc = get_kc_from_char(auto_seq[autostart_type][autostart_index], &shifted);
 
-                TheDisplay->FakeKeyPress(cur.kc, cur.shift, TheCIA1->KeyMatrix, TheCIA1->RevMatrix, &joy_state);
+                TheDisplay->FakeKeyPress(kc, shifted, TheCIA1->KeyMatrix, TheCIA1->RevMatrix, &joy_state);
 
                 autostart_keytime --;
                 if (autostart_keytime == 0)
