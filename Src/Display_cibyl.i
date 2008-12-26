@@ -246,18 +246,13 @@ void C64Display::FakeKeyPress(int kc, bool shift, uint8 *CIA_key_matrix, uint8 *
         }
 }
 
-typedef struct key_seq_item
-{
-  int kc;
-  bool shift;
-} key_seq_item_t;
 #define MATRIX(a,b) (((a) << 3) | (b))
 
 /*
  *  Poll the keyboard
  */
 extern int autostart;
-key_seq_item_t game_b_key = {MATRIX(7, 4), false}; /* Space */
+int game_b_key = MATRIX(7, 4); /* Space */
 extern void cibyl_main_menu(void);
 void C64Display::PollKeyboard(uint8 *key_matrix, uint8 *rev_matrix, uint8 *joystick)
 {
@@ -265,23 +260,13 @@ void C64Display::PollKeyboard(uint8 *key_matrix, uint8 *rev_matrix, uint8 *joyst
         int c64_key = 0;
 
         if (keyState & NOPH_GameCanvas_GAME_A_PRESSED)
-        {
-        	/* FIXME: Bring up the menu instead */
-                printf("Main menu bring up\n");
         	cibyl_main_menu();
-                printf("Done\n");
-        }
         if (keyState & NOPH_GameCanvas_GAME_B_PRESSED)
-        {
-        	printf("Game b down\n");
-        	this->FakeKeyPress(game_b_key.kc, game_b_key.shift, key_matrix,
+        	this->FakeKeyPress(game_b_key, false, key_matrix,
         			rev_matrix, NULL);
-        }
         else
-        {
-        	this->FakeKeyPress(-1, game_b_key.shift, rev_matrix,
+        	this->FakeKeyPress(-1, false, rev_matrix,
         			key_matrix, NULL);
-        }
 
         /* Key handling for joystick. For reference: This was the site of
          * a very long-standing nasty bug... Stupid Simon... */

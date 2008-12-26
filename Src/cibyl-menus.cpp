@@ -201,6 +201,92 @@ extern int autostart;
 extern int autostart_type;
 extern key_seq_item_t game_b_key;
 
+static void input_menu_callback(void *p)
+{
+	mm_args_t *a = (mm_args_t*)p;
+        int nr = NOPH_List_getSelectedIndex(a->menu_list);
+        key_seq_item_t items[] = {
+                (key_seq_item_t){ MATRIX(0, 4), false },
+        	(key_seq_item_t){ MATRIX(0, 5), false },
+                (key_seq_item_t){ MATRIX(0, 6), false },
+                (key_seq_item_t){ MATRIX(0, 3), false },
+                (key_seq_item_t){ MATRIX(4, 3), false },
+                (key_seq_item_t){ MATRIX(7, 0), false },
+                (key_seq_item_t){ MATRIX(7, 3), false },
+        	(key_seq_item_t){ MATRIX(1, 0), false },
+        	(key_seq_item_t){ MATRIX(1, 3), false },
+        	(key_seq_item_t){ MATRIX(2, 0), false },
+        	(key_seq_item_t){ MATRIX(2, 3), false },
+        	(key_seq_item_t){ MATRIX(3, 0), false },
+        	(key_seq_item_t){ MATRIX(3, 3), false },
+        	(key_seq_item_t){ MATRIX(4, 0), false },
+        	(key_seq_item_t){ MATRIX(1, 2), false },
+        	(key_seq_item_t){ MATRIX(3, 4), false },
+        	(key_seq_item_t){ MATRIX(2, 4), false },
+        	(key_seq_item_t){ MATRIX(2, 2), false },
+        	(key_seq_item_t){ MATRIX(1, 6), false },
+        	(key_seq_item_t){ MATRIX(2, 5), false },
+        	(key_seq_item_t){ MATRIX(3, 2), false },
+        	(key_seq_item_t){ MATRIX(3, 5), false },
+        	(key_seq_item_t){ MATRIX(4, 1), false },
+        	(key_seq_item_t){ MATRIX(4, 2), false },
+        	(key_seq_item_t){ MATRIX(4, 5), false },
+        	(key_seq_item_t){ MATRIX(5, 2), false },
+        	(key_seq_item_t){ MATRIX(4, 4), false },
+        	(key_seq_item_t){ MATRIX(4, 7), false },
+        	(key_seq_item_t){ MATRIX(4, 6), false },
+        	(key_seq_item_t){ MATRIX(5, 1), false },
+        	(key_seq_item_t){ MATRIX(7, 6), false },
+        	(key_seq_item_t){ MATRIX(2, 1), false },
+        	(key_seq_item_t){ MATRIX(1, 5), false },
+        	(key_seq_item_t){ MATRIX(2, 6), false },
+        	(key_seq_item_t){ MATRIX(3, 6), false },
+        	(key_seq_item_t){ MATRIX(3, 7), false },
+        	(key_seq_item_t){ MATRIX(1, 1), false },
+        	(key_seq_item_t){ MATRIX(2, 7), false },
+        	(key_seq_item_t){ MATRIX(3, 1), false },
+                (key_seq_item_t){ MATRIX(1, 4), false },
+        };
+
+        game_b_key = items[nr];
+
+        a->selected = 1;
+}
+
+void input_menu(void)
+{
+	NOPH_List_t input_menu_list;
+        NOPH_Display_t display = NOPH_Display_getDisplay(NOPH_MIDlet_get());
+        NOPH_Displayable_t cur = NOPH_Display_getCurrent(display);
+        NOPH_CommandMgr_t cm = NOPH_CommandMgr_getInstance();
+        mm_args_t args;
+        int i;
+        const char *list[] = { "F1", "F3", "F5", "F7",
+                               "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
+                               "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+                               "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z" };
+
+        input_menu_list = NOPH_List_new("Choose option", NOPH_Choice_IMPLICIT);
+        NOPH_Display_setCurrent(display, input_menu_list);
+
+        for (i = 0; i < sizeof(list) / sizeof(const char *); i++)
+                NOPH_List_append(input_menu_list, list[i], 0);
+
+
+        /* Setup the callback args */
+        args.selected = 0;
+        args.menu_list = input_menu_list;
+        NOPH_CommandMgr_setList(cm, input_menu_list, input_menu_callback, &args);
+
+        while(args.selected == 0)
+        {
+                NOPH_Thread_sleep(250);
+        }
+
+        NOPH_Display_setCurrent(display, cur);
+        NOPH_delete(input_menu_list);
+}
+
 static void main_menu_callback(void *p)
 {
 	mm_args_t *a = (mm_args_t*)p;
@@ -272,8 +358,8 @@ void cibyl_main_menu(void)
                 NOPH_Thread_sleep(250);
         }
 
-//	if (args.selected == 2)
-//		input_menu();
+	if (args.selected == 2)
+		input_menu();
 
         NOPH_Display_setCurrent(display, cur);
         NOPH_delete(main_menu_list);

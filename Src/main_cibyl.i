@@ -94,7 +94,6 @@ void Frodo::ReadyToRun(void)
           prefs->DriveType[0] = DRVTYPE_T64;
         else
           prefs->DriveType[0] = DRVTYPE_D64;
-        printf("Ratt grymt: %s\n", selected_game);
         TheC64->NewPrefs(prefs);
 
 	if (load_rom_files())
