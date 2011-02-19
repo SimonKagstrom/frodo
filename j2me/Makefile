@@ -9,40 +9,45 @@
 ## $Id: Makefile $
 ##
 ######################################################################
-SUBDIRS = ../Src
-RESOURCES=res/program.data.bin res/Basic_ROM res/Kernal_ROM res/Char_ROM res/1541_ROM
-TARGET   =frodo.jar frodo.jad
-CIBYL_SYSCALL_SETS ?= resource_manager
 
-CIBYL_GENERATE_JAVA_WRAPPERS_OPTS=-DJSR075 -S syscalls -Iinclude
-CIBYL_MIPS2JAVA_OPTS +=-DJSR075 -Iinclude
-CIBYL_CLASSPATH=$(WTK_PATH)/lib/jsr75.jar
+# Find out the path to the wireless toolkit                                                                                   
+PREVERIFY_BINARY_PATH=$(shell which preverify)
+PREVERIFY_REAL_PATH=$(shell readlink -f $(PREVERIFY_BINARY_PATH))
+PREVERIFY_DIRNAME=$(shell dirname $(PREVERIFY_BINARY_PATH))
+WTK_PATH=$(PREVERIFY_DIRNAME)/../
 
-all: include/ $(SUBDIRS)
+all: frodo.jar
 
-include $(CIBYL_BASE)/build/Rules-j2me.mk
+include/cibyl-syscalls.db: syscalls/command_mgr/include/command_mgr.h
+	cibyl-generate-c-header -o include syscalls command_mgr
 
-$(SUBDIRS):
-	make -C $@ -f $@/Makefile.cibyl
+program: include/cibyl-syscalls.db
+	make -C ../Src -f ../Src/Makefile.cibyl
 
-tmpclasses/CibylConfig.java: CibylConfig.java
-	cp $< $@
+tmpclasses/Cibyl.j: program
+	cibyl-mips2java -DJSR075 -I include -O -d tmpclasses program
 
-res/Basic_ROM:
-	cp "../Basic ROM" $@
+frodo.jar: tmpclasses/Cibyl.j
+	install -d res
+	cp `cibyl-config --prefix`/mips-cibyl-elf/sys-root/usr/share/java/Main.java tmpclasses
+	cp `cibyl-config --prefix`/mips-cibyl-elf/sys-root/usr/share/java/GameScreenCanvas.java tmpclasses
+	cp CibylConfig.java tmpclasses/
+	cd tmpclasses && javac -classpath : -source 1.4 -bootclasspath $(WTK_PATH)/lib/cldcapi11.jar:$(WTK_PATH)/lib/midpapi20.jar:$(WTK_PATH)/lib/jsr75.jar -source 1.4 *.java
+	preverify -classpath $(WTK_PATH)/lib/cldcapi11.jar:$(WTK_PATH)/lib/midpapi20.jar:$(WTK_PATH)/lib/jsr75.jar: -d classes/ tmpclasses/
+	cp tmpclasses/program.data.bin res/
+	cp "../Basic ROM" res/Basic_ROM
+	cp "../Kernal ROM" res/Kernal_ROM
+	cp "../Char ROM" res/Char_ROM
+	cp "../1541 ROM" res/1541_ROM
+	jar cfm $@ MANIFEST.MF -C classes . -C res .
 
-res/Kernal_ROM:
-	cp "../Kernal ROM" $@
+frodo.jad: frodo.jad.templ frodo.jar
+	cat $< > $@
+	echo -n "MIDlet-Jar-Size: " >> $@
+	wc -c frodo.jar | cut -d ' ' -f -1 >> $@
 
-res/Char_ROM:
-	cp "../Char ROM" $@
+clean:
+	rm -rf classes tmpclasses program *.jar *.jad *~ res include
+	make -C ../Src -f ../Src/Makefile.cibyl clean
 
-res/1541_ROM:
-	cp "../1541 ROM" $@
-
-res/a.bin:
-	cp "../a.bin" $@
-
-include/: FORCE
-	$(CIBYL_BASE)/tools/cibyl-generate-c-header -o $@ syscalls/ command_mgr
 FORCE:
