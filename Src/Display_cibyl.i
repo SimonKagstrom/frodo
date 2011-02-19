@@ -16,7 +16,7 @@
 
 // Display surface and canvas
 static int palette[PALETTE_SIZE];
-static int screen[320*240];
+static int screen[320*240 * 2];
 static uint8 __attribute__((aligned((4)))) bitmap[DISPLAY_X * DISPLAY_Y];
 static NOPH_GameCanvas_t canvas;
 static NOPH_Graphics_t graphics;
