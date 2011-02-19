@@ -8,16 +8,23 @@ REVISION  = 1
 DEFINES = -DVERSION='"$(VERSION)"' -U__unix -DSMALL_DISPLAY=1
 CFLAGS  = -Wno-unused -fno-threadsafe-statics
 INCLUDES=-I../j2me/include
-TARGET = ../j2me/c/program
+TARGET = ../j2me/program
 OBJS = 1541d64.oo CPU1541.oo Prefs.oo CPU_common.oo  REU.oo \
        1541job.oo  CIA.oo  Display.oo IEC.oo SID.oo \
        C64.oo main.oo VIC.oo CPUC64.oo cibyl-menus.oo char_to_kc.o
 
-LDLIBS = -lmidp -ljsr075 -lcibar -ls9 -lsoftfloat -lstdc++ -lm
+LDLIBS = -lcrt0 -Wl,--start-group -Wl,--whole-archive -lmidp -ljsr075 -lcibar -ls9 -lstdc++ -lc -Wl,--no-whole-archive -Wl,--end-group -ljava
 
 all: sysconfig.h $(TARGET)
 
-include $(CIBYL_BASE)/build/Rules.mk
+%.oo: %.cpp
+	mips-cibyl-elf-g++ $(INCLUDES) $(CFLAGS) $(DEFINES) -c -Os -o $@ $<
+
+%.o: %.c
+	mips-cibyl-elf-gcc $(INCLUDES) $(CFLAGS) $(DEFINES) -c -Os -o $@ $<
+
+$(TARGET): $(OBJS)
+	mips-cibyl-elf-g++ -o $@ $+ $(LDLIBS)
 
 sysconfig.h: sysconfig.h.cibyl FORCE
 	cp $< $@
@@ -27,5 +34,8 @@ Display.oo: Display.cpp Display.h Display_cibyl.i
 C64.oo: C64.cpp C64_cibyl.i
 
 main.oo: main.cpp main_cibyl.i
+
+clean: FORCE
+	rm -f $(OBJS)
 
 FORCE:
